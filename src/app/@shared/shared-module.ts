@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import {
   FieldLabelDirective,
   AllowedValuesDirective,
-  ZipDirective
+  ZipDirective,
+  PhoneDirective
 } from './directives/all-directives';
 
 
@@ -10,12 +11,14 @@ import {
   declarations: [
     FieldLabelDirective,
     AllowedValuesDirective,
-    ZipDirective
+    ZipDirective,
+    PhoneDirective
   ],
   exports: [
     FieldLabelDirective,
     AllowedValuesDirective,
-    ZipDirective
+    ZipDirective,
+    PhoneDirective
   ],
 })
 

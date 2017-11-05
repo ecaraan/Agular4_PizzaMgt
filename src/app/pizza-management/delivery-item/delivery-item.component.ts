@@ -46,6 +46,8 @@ export class DeliveryItemComponent implements OnInit {
       if (f.controls.phone.errors){
         if (f.controls.phone.errors.required)
           this.validationErrors.push("Phone is required.");
+        if (f.controls.phone.errors.formatNotValid)
+          this.validationErrors.push("Phone should be in the format " + f.controls.phone.errors.formatNotValid.value + ".")
       }
 
       if (f.controls.street.errors){
