@@ -9,10 +9,13 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 import { DeliveryItemComponent } from './delivery-item/delivery-item.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../@shared/shared-module';
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule
+    CommonModule,
+    FormsModule,
+    SharedModule
   ],
   exports: [
     MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent

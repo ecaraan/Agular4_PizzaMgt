@@ -6,46 +6,39 @@
         <div *ngFor="let error of validationErrors">
           <div><small>{{ error }}</small></div>
         </div>
-        <!-- <div *ngIf="firstName.errors.required"><small>First Name is Required</small></div>
-        <div *ngIf="lastName.errors.required"><small>Last Name is Required</small></div>
-        <div *ngIf="email.errors.required"><small>Email is Required</small></div>
-        <div *ngIf="phone.errors.required"><small>Contact No. is Required</small></div>
-        <div *ngIf="street.errors.required"><small>Street is Required</small></div>
-        <div *ngIf="city.errors.required"><small>City is Required</small></div>
-        <div *ngIf="zip.errors.required"><small>Zip is Required</small></div>         -->
       </div>      
       <div class="form-group">
-        <label for="firstName">First Name:</label>
+        <label [fieldLabel]="'First Name:'" for="firstName"></label>
         <input id="firstName" name="firstName" #firstName="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.firstName" required>
       </div>
       <div class="form-group">
-        <label for="lastName">Last Name:</label>
+        <label [fieldLabel]="'Last Name:'" for="lastName"></label>
         <input id="lastName" name="lastName" #lastName="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.lastName" required>
       </div>
       <div class="form-group">
-        <label for="email">Email:</label>
+        <label [fieldLabel]="'Email:'" for="email"></label>
         <input id="email" name="email" #email="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.email" required>
       </div>
       <div class="form-group">
-        <label for="phone">Contact No:</label>
+        <label [fieldLabel]="'Contact No:'" for="phone"></label>
         <input id="phone" name="phone" #phone="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.phone" required>
       </div>
       <div class="form-group">
-        <label for="street">Street:</label>
+        <label [fieldLabel]="'Street:'" for="street"></label>
         <textarea id="street" name="street" #street="ngModel" class="form-control"
           [(ngModel)]="deliveryInfo.street" required></textarea>
       </div>
       <div class="form-group">
-        <label for="city">City:</label>
+        <label [fieldLabel]="'City:'" for="city"></label>
         <input id="city" name="city" #city="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.city" required>
       </div>
       <div class="form-group">
-        <label for="zip">Zip:</label>
+        <label [fieldLabel]="'Zip:'" for="zip"></label>
         <input id="zip" name="zip" #zip="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.zip" required>
       </div>

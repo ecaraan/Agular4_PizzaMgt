@@ -5,10 +5,11 @@ import { AppComponent } from './app.component';
 import { PizzaManagementModule } from './pizza-management/pizza-management.module';
 import { OrderService } from './@shared/services/order.service';
 import { MessagingService } from './@shared/services/messaging.service';
+import { FieldLabelDirective } from './@shared/directives/field-label.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent    
   ],
   imports: [
     BrowserModule,
