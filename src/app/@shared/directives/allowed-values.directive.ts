@@ -24,10 +24,10 @@ export class AllowedValuesDirective implements Validator  {
     return (control: AbstractControl): {[key: string]: any} => {
 
       if (control.value && this.allowedValues.length > 0){
-        let allowedList = this.allowedValues.toLowerCase().split(',');        
+        let allowedList = this.allowedValues.toLowerCase().split(',').map(item => item.trim());        
         
         return allowedList.indexOf(control.value.toLowerCase()) == -1
-          ? {'allowedValues' : { value: this.allowedValues }}
+          ? {'valueNotAllowed' : { value: this.allowedValues }}
           : null;
       }
 

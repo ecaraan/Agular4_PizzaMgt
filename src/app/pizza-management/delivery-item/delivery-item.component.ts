@@ -61,8 +61,10 @@ export class DeliveryItemComponent implements OnInit {
       if (f.controls.zip.errors){
         if (f.controls.zip.errors.required)
           this.validationErrors.push("Zip is required.");
-        if (f.controls.zip.errors.allowedValues)
-          this.validationErrors.push("Zip is not found in the list of valid codes.")
+        if (f.controls.zip.errors.formatNotValid)
+          this.validationErrors.push("Zip should be in the format " + f.controls.zip.errors.formatNotValid.value + ".")
+        else if (f.controls.zip.errors.valueNotAllowed)
+          this.validationErrors.push("Zip is invalid. Valid values are: " + f.controls.zip.errors.valueNotAllowed.value + ".");        
       }
 
     }

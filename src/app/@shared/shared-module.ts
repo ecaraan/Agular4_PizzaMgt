@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import {
   FieldLabelDirective,
-  AllowedValuesDirective
+  AllowedValuesDirective,
+  ZipDirective
 } from './directives/all-directives';
 
 
 @NgModule({
   declarations: [
     FieldLabelDirective,
-    AllowedValuesDirective
+    AllowedValuesDirective,
+    ZipDirective
   ],
   exports: [
     FieldLabelDirective,
-    AllowedValuesDirective
+    AllowedValuesDirective,
+    ZipDirective
   ],
 })
 
