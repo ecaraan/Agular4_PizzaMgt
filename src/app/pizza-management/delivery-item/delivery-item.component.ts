@@ -39,6 +39,8 @@ export class DeliveryItemComponent implements OnInit {
       if (f.controls.email.errors){
         if (f.controls.email.errors.required)
           this.validationErrors.push("Email is required.");
+        if (f.controls.email.errors.email)
+          this.validationErrors.push("Email format is invalid.");
       }
 
       if (f.controls.phone.errors){
@@ -59,6 +61,8 @@ export class DeliveryItemComponent implements OnInit {
       if (f.controls.zip.errors){
         if (f.controls.zip.errors.required)
           this.validationErrors.push("Zip is required.");
+        if (f.controls.zip.errors.allowedValues)
+          this.validationErrors.push("Zip is not found in the list of valid codes.")
       }
 
     }

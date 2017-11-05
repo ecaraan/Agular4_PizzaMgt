@@ -9,7 +9,7 @@ export class FieldLabelDirective implements AfterViewInit {
 
   constructor(private el: ElementRef) { }
 
-  ngAfterViewInit(){
+  ngAfterViewInit(): void {
     this.el.nativeElement.innerText = this.fieldLabel;
   }
 

@@ -9,7 +9,7 @@ import { FieldLabelDirective } from './@shared/directives/field-label.directive'
 
 @NgModule({
   declarations: [
-    AppComponent    
+    AppComponent
   ],
   imports: [
     BrowserModule,

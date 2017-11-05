@@ -8,7 +8,7 @@
         </div>
       </div>      
       <div class="form-group">
-        <label [fieldLabel]="'First Name:'" for="firstName"></label>
+        <label [fieldLabel]="'First Name:'" for="firstName">Not the label</label>
         <input id="firstName" name="firstName" #firstName="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.firstName" required>
       </div>
@@ -19,7 +19,7 @@
       </div>
       <div class="form-group">
         <label [fieldLabel]="'Email:'" for="email"></label>
-        <input id="email" name="email" #email="ngModel" type="text" class="form-control"
+        <input id="email" name="email" email #email="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.email" required>
       </div>
       <div class="form-group">
@@ -40,7 +40,8 @@
       <div class="form-group">
         <label [fieldLabel]="'Zip:'" for="zip"></label>
         <input id="zip" name="zip" #zip="ngModel" type="text" class="form-control"
-          [(ngModel)]="deliveryInfo.zip" required>
+          [(ngModel)]="deliveryInfo.zip" required
+          [allowedValues]="'ab,cd,ef'">
       </div>
       <button  type="submit" class="btn btn-primary btn-action" style="margin-top:40px">Order Now</button>
     </form>

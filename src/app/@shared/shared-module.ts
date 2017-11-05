@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import {
-  FieldLabelDirective
+  FieldLabelDirective,
+  AllowedValuesDirective
 } from './directives/all-directives';
 
 
 @NgModule({
   declarations: [
-    FieldLabelDirective
+    FieldLabelDirective,
+    AllowedValuesDirective
   ],
   exports: [
-    FieldLabelDirective
+    FieldLabelDirective,
+    AllowedValuesDirective
   ],
 })
 
