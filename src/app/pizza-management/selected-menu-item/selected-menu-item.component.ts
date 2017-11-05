@@ -42,8 +42,11 @@ export class SelectedMenuItemComponent implements OnInit {
 
   sizeSelected(size): void {    
     this.price = this.getPrice(size);
-    this.orderService.currentOrder.size = size;
-    this.orderService.currentOrder.price = this.price;
+
+    if (this.orderService.currentOrder){
+      this.orderService.currentOrder.size = size;
+      this.orderService.currentOrder.price = this.price;
+    }    
   }
 
   private getPrice(size): number {

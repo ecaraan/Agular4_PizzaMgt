@@ -1,25 +1,20 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+<div class="row">
+  <div class="row text-center"><h3>Shopping Cart</h3></div>
   <div class="row">
-    <div class="row text-center"><h3>Shopping Cart</h3></div>
+    <app-ordered-items [orderMode]="orderMode"
+      (ordersChangedEvent)="ordersChanged($event)">
+    </app-ordered-items>
+  </div>
+  <div *ngIf="orders != null && orders.length > 0">
     <div class="row">
-      <app-ordered-items [orderMode]="orderMode"
-        (ordersChangedEvent)="ordersChanged($event)">
-      </app-ordered-items>
+      <hr/>
+      <app-delivery-item 
+        [orderMode]="orderMode"
+        (orderNowClickEvent)="orderNowClick($event)">
+      </app-delivery-item>
     </div>
-    <div *ngIf="orders != null && orders.length > 0">
-      <div class="row">
-        <hr/>
-        <app-delivery-item [orderMode]="orderMode"
-          (deliveryInfoChangedEvent)="deliveryInfoChanged($event)">
-          </app-delivery-item>
-      </div>
-      <div class="row" *ngIf="orderMode=='edit';then edit else read"></div>
-      <ng-template #edit>
-        <button  type="submit" class="btn btn-primary btn-action" style="margin-top:40px">Order Now</button>
-      </ng-template>
-      <ng-template #read>
-        <button class="btn btn-primary btn-action" style="margin-top:40px" (click)="payNow()">Proceed to Payment</button>
-      </ng-template>    
+    <div class="row" *ngIf="orderMode=='read'">
+      <button class="btn btn-primary btn-action" style="margin-top:40px" (click)="payNow()">Proceed to Payment</button>
     </div>
   </div>
-</form>
+</div>

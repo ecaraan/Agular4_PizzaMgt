@@ -6,4 +6,8 @@ export class DeliveryInfo {
     street: string;
     city: string;
     zip: string;
+
+    constructor(init?:Partial<DeliveryInfo>) {
+        Object.assign(this, init);
+    }
 }

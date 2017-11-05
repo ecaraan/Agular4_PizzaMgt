@@ -19,7 +19,8 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit() {
   }
 
-  deliveryInfoChanged(d): void {
+  orderNowClick(d): void {
+    this.orderMode = 'read';
     this.deliveryInfo = d;
   }
 
@@ -29,9 +30,5 @@ export class ShoppingCartComponent implements OnInit {
     if (this.orderMode != 'edit'){
       this.orderMode = 'edit';
     }    
-  }
-
-  orderNow(): void {
-    this.orderMode = 'read';
   }
 }
