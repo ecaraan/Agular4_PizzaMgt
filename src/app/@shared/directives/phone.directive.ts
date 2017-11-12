@@ -24,12 +24,14 @@ export class PhoneDirective implements Validator {
       '\\d', '\\d', '\\d', '\\d']);
   }
 
-  @HostListener('keydown', ['$event']) onKeydown(e) {   
-    if (this.maskHelper.updateCharacter(e)){
-      this.ngModelChange.emit(this.el.nativeElement.value);
-    }
+  @HostListener('keydown', ['$event']) onKeydown(e) { 
+    if (e.keyCode != 9){ // tab char
+      if (this.maskHelper.updateCharacter(e)){
+        this.ngModelChange.emit(this.el.nativeElement.value);
+      }
 
-    return false;
+      return false;
+    }
   }
 
   @HostListener('focus') onFocus() {
