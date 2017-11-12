@@ -2,7 +2,7 @@ export class DeliveryInfo {
     firstName: string;
     lastName: string;
     email: string;
-    phone: string;
+    phone: string = '(___) ___-____';
     street: string;
     city: string;
     zip: string;
