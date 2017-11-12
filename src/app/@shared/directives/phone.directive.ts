@@ -1,5 +1,5 @@
-import { Directive, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
-import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors, NgModel } from '@angular/forms';
+import { Directive, ElementRef, HostListener, EventEmitter, Output, AfterViewInit } from '@angular/core';
+import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors } from '@angular/forms';
 import { MaskHelper } from '../helpers/mask-helper';
 
 @Directive({
@@ -11,17 +11,23 @@ import { MaskHelper } from '../helpers/mask-helper';
   }]
 })
 
-export class PhoneDirective implements Validator {
+export class PhoneDirective implements Validator, AfterViewInit {
 
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter(false);
 
   private maskHelper: MaskHelper;
+  private mask: string = '(___) ___-____';
+  private characterValidators: string[] = [
+    'separator', '\\d', '\\d', '\\d', 'separator',
+    'separator', '\\d', '\\d', '\\d', 'separator',
+    '\\d', '\\d', '\\d', '\\d'];
   
   constructor(private el: ElementRef) {
-    this.maskHelper = new MaskHelper(el, '(___) ___-____', [
-      'separator', '\\d', '\\d', '\\d', 'separator',
-      'separator', '\\d', '\\d', '\\d', 'separator',
-      '\\d', '\\d', '\\d', '\\d']);
+    this.maskHelper = new MaskHelper(el, this.mask, this.characterValidators);
+  }
+
+  ngAfterViewInit(){
+    this.ngModelChange.emit(this.mask);
   }
 
   @HostListener('keydown', ['$event']) onKeydown(e) { 

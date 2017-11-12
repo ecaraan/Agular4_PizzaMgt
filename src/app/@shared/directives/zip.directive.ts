@@ -1,5 +1,6 @@
-import { Directive, ElementRef, HostListener } from '@angular/core';
+import { Directive, ElementRef, HostListener, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors } from '@angular/forms';
+import { MaskHelper } from '../helpers/mask-helper';
 
 @Directive({
   selector: 'input[type="text"].zip',
@@ -10,16 +11,41 @@ import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationError
   }]
 })
 
-export class ZipDirective implements Validator {
+export class ZipDirective implements Validator, AfterViewInit {
   
-  constructor(private el: ElementRef) { }
+  @Output() ngModelChange: EventEmitter<any> = new EventEmitter(false);
+  
+    private maskHelper: MaskHelper;
+    private mask: string = '____ ___';
+    private characterValidators: string[] = [
+      '[a-zA-Z]', '[a-zA-Z]', '\\d', '\\d', 'separator',
+      '\\d', '[a-zA-Z]', '[a-zA-Z]'];
+    
+    constructor(private el: ElementRef) {
+      this.maskHelper = new MaskHelper(el, this.mask, this.characterValidators, true);
+    }
 
-  @HostListener('keydown', ['$event']) onKeyDown(event) {
-    // let allowed = '^[a-zA-Z]{2}\d{2}\s\d[a-zA-Z]{2}$';
-    // if (!this.rgx.test(allowed)){
-    //   event.preventDefault();
-    // }
-  }
+    ngAfterViewInit(){
+      this.ngModelChange.emit(this.mask);
+    }
+  
+    @HostListener('keydown', ['$event']) onKeydown(e) { 
+      if (e.keyCode != 9){ // tab char
+        if (this.maskHelper.updateCharacter(e)){
+          this.ngModelChange.emit(this.el.nativeElement.value);
+        }
+  
+        return false;
+      }
+    }
+  
+    @HostListener('focus') onFocus() {
+      this.maskHelper.setCursonAtBeginning();
+    }
+  
+    @HostListener('click') onClick() {  
+      this.maskHelper.setCursonAtBeginning();
+    }
 
   validate(control: AbstractControl): ValidationErrors{
     return this.zipValidator()(control);
