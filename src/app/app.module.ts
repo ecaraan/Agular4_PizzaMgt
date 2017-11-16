@@ -6,6 +6,7 @@ import { PizzaManagementModule } from './pizza-management/pizza-management.modul
 import { OrderService } from './@shared/services/order.service';
 import { MessagingService } from './@shared/services/messaging.service';
 import { PizzaManagementRoutingModule } from './pizza-management/pizza-management-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { PizzaManagementRoutingModule } from './pizza-management/pizza-managemen
   imports: [
     BrowserModule,
     PizzaManagementModule,
-    PizzaManagementRoutingModule
+    PizzaManagementRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [OrderService, MessagingService],
   bootstrap: [AppComponent]

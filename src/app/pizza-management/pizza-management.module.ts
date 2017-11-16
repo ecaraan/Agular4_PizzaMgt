@@ -13,17 +13,25 @@ import { SharedModule } from '../@shared/shared-module';
 import { PaymentComponent } from './payment/payment.component';
 import { OrderComponent } from './order/order.component';
 import { PizzaManagementRoutingModule } from './pizza-management-routing.module';
+import { MaterialModule } from '../material.module';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
-    PizzaManagementRoutingModule
+    PizzaManagementRoutingModule,
+    MaterialModule
   ],
   exports: [
-    MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent, PaymentComponent, OrderComponent
+    MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent, PaymentComponent, OrderComponent, ConfirmDialogComponent
   ],
-  declarations: [MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent, PaymentComponent, OrderComponent]
+  declarations: [
+    MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent, PaymentComponent, OrderComponent, ConfirmDialogComponent
+  ],
+  entryComponents: [
+    ConfirmDialogComponent
+  ]
 })
 export class PizzaManagementModule { }

@@ -3,6 +3,8 @@ import { Subject, Subscription } from 'rxjs/Rx';
 import { OrderItem } from '../../model/order-item';
 import { OrderService } from '../../@shared/services/order.service';
 import { MessagingService } from '../../@shared/services/messaging.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-ordered-items',
@@ -17,7 +19,7 @@ export class OrderedItemsComponent implements OnInit {
   private destroyed$ = new Subject(); 
   orders: OrderItem[] = [];
 
-  constructor(private orderService: OrderService, private messagingService: MessagingService) {
+  constructor(private orderService: OrderService, private messagingService: MessagingService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -57,11 +59,19 @@ export class OrderedItemsComponent implements OnInit {
     }
   }
 
-  removeOrderItem(orderItem){
-    if (this.orderService.removeOrderItem(orderItem)){
-      this.orders = this.orders.filter(o => o !== orderItem);
-      this.ordersChangedEvent.emit(this.orders);
-    }
+  removeOrderItem(orderItem): void {
+    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { confirmText: 'Are you sure you want to remove ' + orderItem.name  +'?' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        if (this.orderService.removeOrderItem(orderItem)){
+          this.orders = this.orders.filter(o => o !== orderItem);
+          this.ordersChangedEvent.emit(this.orders);
+        }
+      }
+    });    
   }
 
   getTotal(): number {
