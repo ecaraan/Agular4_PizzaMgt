@@ -1,53 +1,53 @@
 <h4>Delivery Detail:</h4>
 <div *ngIf="orderMode=='edit';then edit else read"></div>
 <ng-template #edit>
-    <form id="orderForm" name="orderForm" #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)" novalidate>
+    <form id="orderForm" name="orderForm" #orderForm="ngForm" (ngSubmit)="onSubmit(orderForm)" class="form-full-width" novalidate>
       <div *ngIf="validationErrors && validationErrors.length > 0" class="alert alert-danger">
         <div *ngFor="let error of validationErrors">
           <div><small>{{ error }}</small></div>
         </div>
-      </div>      
-      <div class="form-group">
-        <label [fieldLabel]="'First Name:'" for="firstName">Not the label</label>
-        <input id="firstName" name="firstName" #firstName="ngModel" type="text" class="form-control"
+      </div>
+      <mat-form-field class="field-full-width">
+        <label [fieldLabel]="'First Name:'" for="firstName"></label>
+        <input matInput id="firstName" name="firstName" #firstName="ngModel" type="text" class="form-control"
           [(ngModel)]="deliveryInfo.firstName" required>
-      </div>
-      <div class="form-group">
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
         <label [fieldLabel]="'Last Name:'" for="lastName"></label>
-        <input id="lastName" name="lastName" #lastName="ngModel" type="text" class="form-control"
-          [(ngModel)]="deliveryInfo.lastName" required>
-      </div>
-      <div class="form-group">
+        <input matInput id="lastName" name="lastName" #lastName="ngModel" type="text" class="form-control"
+        [(ngModel)]="deliveryInfo.lastName" required>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
         <label [fieldLabel]="'Email:'" for="email"></label>
-        <input id="email" name="email" email #email="ngModel" type="text" class="form-control"
-          [(ngModel)]="deliveryInfo.email" required>
-      </div>
-      <div class="form-group">
+        <input matInput id="email" name="email" email #email="ngModel" type="text" class="form-control"
+        [(ngModel)]="deliveryInfo.email" required>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
         <label [fieldLabel]="'Contact No:'" for="phone"></label>
-        <input id="phone" name="phone" #phone="ngModel" type="text" class="form-control phone"
-          [(ngModel)]="deliveryInfo.phone" required>
-      </div>
-      <div class="form-group">
+        <input matInput id="phone" name="phone" #phone="ngModel" type="text" class="form-control phone"
+        [(ngModel)]="deliveryInfo.phone" required>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
         <label [fieldLabel]="'Street:'" for="street"></label>
-        <textarea id="street" name="street" #street="ngModel" class="form-control"
-          [(ngModel)]="deliveryInfo.street" required></textarea>
-      </div>
-      <div class="form-group">
+        <input matInput id="street" name="street" #street="ngModel" class="form-control"
+        [(ngModel)]="deliveryInfo.street" required>
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
         <label [fieldLabel]="'City:'" for="city"></label>
-        <input id="city" name="city" #city="ngModel" type="text" class="form-control"
-          [(ngModel)]="deliveryInfo.city" required>
-      </div>
-      <div class="form-group">
+        <input matInput id="city" name="city" #city="ngModel" type="text" class="form-control"
+        [(ngModel)]="deliveryInfo.city" required>
+      </mat-form-field> 
+      <mat-form-field class="field-full-width">
         <label [fieldLabel]="'Zip:'" for="zip"></label>
-        <input id="zip" name="zip" #zip="ngModel" type="text" class="form-control zip"
-          [(ngModel)]="deliveryInfo.zip" required
-          [allowedValues]="'AB12 3EF, AA11 1AA, BB2 2BB'">
-      </div>
+        <input matInput id="zip" name="zip" #zip="ngModel" type="text" class="form-control zip"
+        [(ngModel)]="deliveryInfo.zip" required
+        [allowedValues]="'AB12 3EF, AA11 1AA, BB2 2BB'">
+      </mat-form-field> 
       <button  type="submit" class="btn btn-primary btn-action" style="margin-top:40px">Order Now</button>
     </form>
-    <pre>
+    <!-- <pre>
       {{ orderForm.value | json }}
-    </pre>
+    </pre> -->
 </ng-template>
 <ng-template #read>
   <div class="row">

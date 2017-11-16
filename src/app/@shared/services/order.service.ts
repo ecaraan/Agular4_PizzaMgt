@@ -27,4 +27,19 @@ export class OrderService {
         this.orders = this.orders.filter(o => o !== orderItem);
         return true;
     }
+
+    public setDeliveryInfo(deliveryInfo){
+        this.deliveryInfo = deliveryInfo;
+    }
+
+    public getDeliveryInfo() : DeliveryInfo {
+        if (this.deliveryInfo == null)
+            return new DeliveryInfo();
+
+        return this.deliveryInfo;
+    }
+
+    public getOrderItems(): OrderItem[] {
+        return this.orders;
+    }
 }

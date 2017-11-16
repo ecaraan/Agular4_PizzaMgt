@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter  } from '@angular/core';
 import { DeliveryInfo } from '../../model/delivery-info';
+import { OrderService } from '../../@shared/services/order.service';
 
 @Component({
   selector: 'app-delivery-item',
@@ -13,9 +14,11 @@ export class DeliveryItemComponent implements OnInit {
   @Input() orderMode: string;
   @Output() orderNowClickEvent: EventEmitter<DeliveryInfo> = new EventEmitter<DeliveryInfo>();
 
-  constructor() { }
+  constructor(private orderService: OrderService) {    
+  }
 
   ngOnInit() {
+      this.deliveryInfo = this.orderService.getDeliveryInfo();
   }
 
   onSubmit(f): void {
