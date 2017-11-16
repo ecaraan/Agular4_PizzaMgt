@@ -29,6 +29,12 @@ export class OrderedItemsComponent implements OnInit {
         }
       }
     );
+
+    let orderItems = this.orderService.getOrderItems();
+
+    if (orderItems != null && orderItems.length > 0){
+      this.orders = orderItems;
+    }
   }
 
   ngOnDestroy(): void {

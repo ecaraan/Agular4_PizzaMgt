@@ -10,16 +10,20 @@ import { DeliveryItemComponent } from './delivery-item/delivery-item.component';
 import { OrderedItemsComponent } from './ordered-items/ordered-items.component';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../@shared/shared-module';
+import { PaymentComponent } from './payment/payment.component';
+import { OrderComponent } from './order/order.component';
+import { PizzaManagementRoutingModule } from './pizza-management-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule
+    SharedModule,
+    PizzaManagementRoutingModule
   ],
   exports: [
-    MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent
+    MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent, PaymentComponent, OrderComponent
   ],
-  declarations: [MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent]
+  declarations: [MainpageComponent, MenuComponent, ShoppingCartComponent, MenuItemsComponent, SelectedMenuItemComponent, CartItemComponent, DeliveryItemComponent, OrderedItemsComponent, PaymentComponent, OrderComponent]
 })
 export class PizzaManagementModule { }

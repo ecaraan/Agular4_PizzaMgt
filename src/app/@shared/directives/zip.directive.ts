@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostListener, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors } from '@angular/forms';
+import { ValidatorFn, AbstractControl, NG_VALIDATORS, Validator, ValidationErrors, NgControl } from '@angular/forms';
 import { MaskHelper } from '../helpers/mask-helper';
 
 @Directive({
@@ -15,37 +15,37 @@ export class ZipDirective implements Validator, AfterViewInit {
   
   @Output() ngModelChange: EventEmitter<any> = new EventEmitter(false);
   
-    private maskHelper: MaskHelper;
-    private mask: string = '____ ___';
-    private characterValidators: string[] = [
-      '[a-zA-Z]', '[a-zA-Z]', '\\d', '\\d', 'separator',
-      '\\d', '[a-zA-Z]', '[a-zA-Z]'];
-    
-    constructor(private el: ElementRef) {
-      this.maskHelper = new MaskHelper(el, this.mask, this.characterValidators, true);
-    }
+  private maskHelper: MaskHelper;
+  private mask: string = '____ ___';
+  private characterValidators: string[] = [
+    '[a-zA-Z]', '[a-zA-Z]', '\\d', '\\d', 'separator',
+    '\\d', '[a-zA-Z]', '[a-zA-Z]'];
+  
+  constructor(private el: ElementRef) {
+    this.maskHelper = new MaskHelper(el, this.mask, this.characterValidators, true);
+  }
 
-    ngAfterViewInit(){
+  ngAfterViewInit(){
       this.ngModelChange.emit(this.mask);
-    }
-  
-    @HostListener('keydown', ['$event']) onKeydown(e) { 
-      if (e.keyCode != 9){ // tab char
-        if (this.maskHelper.updateCharacter(e)){
-          this.ngModelChange.emit(this.el.nativeElement.value);
-        }
-  
-        return false;
+  }
+
+  @HostListener('keydown', ['$event']) onKeydown(e) { 
+    if (e.keyCode != 9){ // tab char
+      if (this.maskHelper.updateCharacter(e)){
+        this.ngModelChange.emit(this.el.nativeElement.value);
       }
+
+      return false;
     }
-  
-    @HostListener('focus') onFocus() {
-      this.maskHelper.setCursonAtBeginning();
-    }
-  
-    @HostListener('click') onClick() {  
-      this.maskHelper.setCursonAtBeginning();
-    }
+  }
+
+  @HostListener('focus') onFocus() {
+    this.maskHelper.setCursonAtBeginning();
+  }
+
+  @HostListener('click') onClick() {  
+    this.maskHelper.setCursonAtBeginning();
+  }
 
   validate(control: AbstractControl): ValidationErrors{
     return this.zipValidator()(control);

@@ -14,7 +14,7 @@
       </app-delivery-item>
     </div>
     <div class="row" *ngIf="orderMode=='read'">
-      <button class="btn btn-primary btn-action" style="margin-top:40px" (click)="payNow()">Proceed to Payment</button>
+      <a routerLink="/payment" routerLinkActive="active" class="btn btn-primary btn-action" style="margin-top:40px;padding-top:15px" role="button">Proceed to Payment</a>
     </div>
   </div>
 </div>

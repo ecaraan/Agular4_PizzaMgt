@@ -26,7 +26,7 @@ export class PhoneDirective implements Validator, AfterViewInit {
     this.maskHelper = new MaskHelper(el, this.mask, this.characterValidators);
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit(){    
     this.ngModelChange.emit(this.mask);
   }
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DeliveryInfo } from '../../model/delivery-info';
 import { OrderItem } from '../../model/order-item';
+import { OrderService } from '../../@shared/services/order.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,19 +10,20 @@ import { OrderItem } from '../../model/order-item';
 })
 export class ShoppingCartComponent implements OnInit {
 
-  orderMode: string = 'edit';
+  @Input() orderMode: string = '';
   orders: OrderItem[] = [];
-  deliveryInfo: DeliveryInfo = new DeliveryInfo();
 
-  constructor() { 
+  constructor(private orderService: OrderService) { 
   }
 
   ngOnInit() {
+    if (this.orderMode == '')
+      this.orderMode = 'edit';
   }
 
   orderNowClick(d): void {
     this.orderMode = 'read';
-    this.deliveryInfo = d;
+    this.orderService.setDeliveryInfo(d);
   }
 
   ordersChanged(orders): void {
